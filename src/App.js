@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import AppRoutes from './Routes/AppRoutes';
+import Footer from './components/Footer';
+import { CssBaseline, Box } from '@mui/material';
+import Banner from './components/Banner';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <CssBaseline />
+      <Box sx={{ zIndex: 10, position: 'sticky', top: 0 }}>
+        <Banner />
+      </Box>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppRoutes />
+      </Box>
+      <Box sx={{ mt: 'auto' }}>
+        <Footer />
+      </Box>
     </div>
   );
 }
