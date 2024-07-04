@@ -3,11 +3,11 @@ import { Box, Typography } from '@mui/material';
 
 const Banner = () => {
   return (
-    <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 4, textAlign: 'center' }}>
-      <Typography variant="h1" component="div" gutterBottom>
+    <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 2, textAlign: 'center' }}>
+      <Typography variant="h2" component="div" gutterBottom>
         Totalitea Online Shop
       </Typography>
-      <Typography variant="h5" component="div">
+      <Typography variant="h6" component="div">
         Discover a world of premium tea and coffee
       </Typography>
     </Box>

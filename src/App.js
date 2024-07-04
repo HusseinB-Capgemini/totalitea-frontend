@@ -1,6 +1,6 @@
 import React from 'react';
 import AppRoutes from './Routes/AppRoutes';
-import Footer from './components/Footer';
+//import Footer from './components/Footer';
 import { CssBaseline, Box } from '@mui/material';
 import Banner from './components/Banner';
 
@@ -15,7 +15,7 @@ function App() {
         <AppRoutes />
       </Box>
       <Box sx={{ mt: 'auto' }}>
-        <Footer />
+
       </Box>
     </div>
   );
