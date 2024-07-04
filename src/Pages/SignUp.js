@@ -33,7 +33,7 @@ export default function SignUp() {
         password,
       });
       console.log('Signup Response:', response.data);
-      navigate('/login'); 
+      navigate('/product'); 
     } catch (error) {
       console.error('Signup Error:', error);
       setError(error.response?.data || 'Signup failed'); 
