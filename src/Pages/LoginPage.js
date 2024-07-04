@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,19 +11,31 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link as RouterLink } from 'react-router-dom'; 
+import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import axiosInstance from '../Hooks/axiosInstance'; // Import your Axios instance
 
 const defaultTheme = createTheme();
 
 const LoginPage = () => {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-   
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    try {
+      const response = await axiosInstance.post('/auth/login', { email, password });
+      const token = response.data.token;
+      localStorage.setItem('token', token); // Store token in localStorage or session storage
+      navigate('/');
+    } catch (error) {
+      setError(error.response.data); // Handle error response from backend
+    }
   };
 
   return (
@@ -63,6 +75,7 @@ const LoginPage = () => {
               id="password"
               autoComplete="current-password"
             />
+            {error && <Typography color="error">{error}</Typography>}
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -83,6 +96,7 @@ const LoginPage = () => {
               </Grid>
               <Grid item>
                 <RouterLink to="/signup" variant="body2" component={Link}>
+                  Don't have an account? Sign Up
                 </RouterLink>
               </Grid>
             </Grid>
