@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useAuth } from '../content/AuthContext';
-import LoginButton from "../components/LoginButton"
+import LoginButton from "../components/LoginButton";
+
 const Banner = () => {
   const { isLoggedIn, user, logout } = useAuth();
 
@@ -13,9 +14,9 @@ const Banner = () => {
       <Typography variant="h6" component="div">
         Discover a world of premium tea and coffee
       </Typography>
-      {isLoggedIn && (
+      {isLoggedIn && user && user.fullname && (
         <Typography variant="subtitle1" component="div">
-          Welcome, {user.username}!
+          Welcome, {user.fullname}! 
         </Typography>
       )}
 
