@@ -8,11 +8,17 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const fetchProducts = async (searchQuery = '') => {
+  const fetchProducts = async (name = '', supplierName = '') => {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.get(`http://localhost:8082/api/products${searchQuery ? `/search?name=${searchQuery}` : ''}`);
+      let url = `http://localhost:8080/api/products/search`;
+      if (name) {
+        url += `?name=${name}`;
+      } else if (supplierName) {
+        url += `?supplierName=${supplierName}`;
+      }
+      const response = await axios.get(url);
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -25,8 +31,8 @@ const ProductPage = () => {
     fetchProducts();
   }, []);
 
-  const handleSearch = (searchTerm) => {
-    fetchProducts(searchTerm);
+  const handleSearch = (name, supplierName) => {
+    fetchProducts(name, supplierName);
   };
 
   if (loading) {
@@ -50,7 +56,7 @@ const ProductPage = () => {
       )}
       <Grid container spacing={4}>
         {products.map((product) => (
-          <Grid item key={product.id} xs={8} sm={6} md={4}>
+          <Grid item key={product.id} xs={12} sm={6} md={4}>
             <Card>
               <CardMedia
                 component="img"
@@ -62,8 +68,11 @@ const ProductPage = () => {
                 <Typography gutterBottom variant="h5" component="div">
                   {product.name}
                 </Typography>
+                <Typography gutterBottom variant="h6" component="div">
+                  Supplied By: {product.supplierName}
+                </Typography>
                 <Typography variant="h6" component="div">
-                  price: £{product.price}
+                  Price: £{product.price}
                 </Typography>
                 <Typography variant="h6" component="div">
                   Weight: {product.weight}g
