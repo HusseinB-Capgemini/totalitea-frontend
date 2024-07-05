@@ -9,18 +9,18 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const decodedToken = jwtDecode(token);
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      const decodedToken = jwtDecode(storedToken);
       setUser(decodedToken);
       setIsLoggedIn(true);
-      setToken(token);
+      setToken(storedToken);
     } else {
       setUser(null);
       setIsLoggedIn(false);
       setToken(null);
     }
-  }, [token]);
+  }, []); // Empty dependency array to run the effect only once on mount
 
   const login = (token) => {
     const decodedToken = jwtDecode(token);

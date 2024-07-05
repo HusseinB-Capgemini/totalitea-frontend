@@ -11,10 +11,10 @@ import {
   CircularProgress,
 } from '@mui/material';
 import SearchBar from '../components/SearchBar';
-import { useAuth } from '../content/AuthContext'; 
+import { useAuth } from '../content/AuthContext';
 
 const ProductPage = () => {
-  const { user } = useAuth(); 
+  const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -52,33 +52,33 @@ const ProductPage = () => {
       console.error('User is not authenticated or user ID is missing.', user);
       return;
     }
-  
+
     const cartItem = {
-      userId: parseInt(user.id), 
+      userId: parseInt(user.id),
       productId: parseInt(productId),
-      quantity: 1, 
+      quantity: 1,
       price: productPrice,
     };
-  
+
     try {
       const token = localStorage.getItem('token');
       if (!token) {
         console.error('No token found in localStorage.');
         return;
       }
-  
+
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       };
-  
+
       console.log('Adding to cart:', cartItem);
-  
+
       const response = await axios.post('http://localhost:8083/carts', cartItem, config);
       console.log('Cart item added:', response.data);
-  
+
     } catch (error) {
       console.error('Error adding to cart:', error);
     }

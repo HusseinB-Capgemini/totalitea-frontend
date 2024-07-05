@@ -16,17 +16,16 @@ const Banner = () => {
       </Typography>
       {isLoggedIn && user && user.fullname && (
         <Typography variant="subtitle1" component="div">
-          Welcome, {user.fullname}! 
+          Welcome, {user.fullname}!
         </Typography>
-      )
-
+      )}
 
       <div>
         {isLoggedIn ? (
           <button onClick={logout}>Logout</button>
-      ) : (
-        <LoginButton />
-                )}
+        ) : (
+          <LoginButton />
+        )}
       </div>
     </Box>
   );
