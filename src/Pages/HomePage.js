@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container, Typography, Grid, Box, Paper } from '@mui/material';
+import { Container, Typography, Grid, Paper } from '@mui/material';
 
-import LoginButton from '../components/LoginButton';
 
 const HomePage = () => {
   return (
@@ -32,9 +31,6 @@ const HomePage = () => {
             </Paper>
           </Grid>
         </Grid>
-        <Box sx={{ mt: 4 }}>
-          <LoginButton /> 
-        </Box>
       </Container>
     </div>
   );

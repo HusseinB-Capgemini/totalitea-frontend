@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import axiosInstance from '../Hooks/axiosInstance'; // Import your Axios instance
+import axiosInstance from '../Hooks/axiosInstance'; 
 
 const defaultTheme = createTheme();
 
@@ -31,10 +31,10 @@ const LoginPage = () => {
     try {
       const response = await axiosInstance.post('/auth/login', { email, password });
       const token = response.data.token;
-      localStorage.setItem('token', token); // Store token in localStorage or session storage
-      navigate('/');
+      localStorage.setItem('token', token); 
+      navigate('/product');
     } catch (error) {
-      setError(error.response.data); // Handle error response from backend
+      setError(error.response.data); 
     }
   };
 
