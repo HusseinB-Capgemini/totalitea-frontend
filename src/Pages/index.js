@@ -4,6 +4,8 @@ import HomePage from '../Pages/HomePage';
 import Login from '../Pages/LoginPage';
 import SignUp from '../Pages/SignUp';
 import ProductPage from '../Pages/ProductPage';
+import CartPage from '../Pages/CartPage';
+
 import ProtectedRoute from './Helpers/ProtectedRoute';
 
 const routes = [
@@ -25,6 +27,11 @@ const routes = [
   {
     path: '/product',
     element: <ProductPage />,
+    isProtected: false,
+  },
+  {
+    path: '/cart',
+    element: <CartPage />,
     isProtected: false,
   },
 ];

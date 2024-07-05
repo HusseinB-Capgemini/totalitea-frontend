@@ -24,16 +24,13 @@ export const AuthProvider = ({ children }) => {
 
   const login = (token) => {
     const decodedToken = jwtDecode(token);
-    console.log('Login:', token);
-
     localStorage.setItem('token', token);
     setUser(decodedToken);
     setIsLoggedIn(true);
     setToken(token);
   };
-  const logout = () => {
-    console.log('Logout');
 
+  const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
     setIsLoggedIn(false);
