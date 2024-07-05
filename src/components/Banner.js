@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 import { useAuth } from '../content/AuthContext';
 import LoginButton from "../components/LoginButton"
 const Banner = () => {
-  const { isLoggedIn, user, logout } = useAuth();
+ const { isLoggedIn, user, logout } = useAuth();
 
   return (
     <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 2, textAlign: 'center' }}>
@@ -13,18 +13,19 @@ const Banner = () => {
       <Typography variant="h6" component="div">
         Discover a world of premium tea and coffee
       </Typography>
-      {isLoggedIn && (
+     {isLoggedIn && (
         <Typography variant="subtitle1" component="div">
-          Welcome, {user.username}!
+         Welcome, {user.username}!
         </Typography>
-      )}
+      )
+
 
       <div>
         {isLoggedIn ? (
           <button onClick={logout}>Logout</button>
-        ) : (
-          <LoginButton />
-        )}
+      ) : (
+        <LoginButton />
+                )}
       </div>
     </Box>
   );

@@ -6,7 +6,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null); 
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -24,15 +24,15 @@ export const AuthProvider = ({ children }) => {
 
   const login = (token) => {
     const decodedToken = jwtDecode(token);
-    console.log('Login:', token); 
+    console.log('Login:', token);
 
     localStorage.setItem('token', token);
     setUser(decodedToken);
     setIsLoggedIn(true);
-    setToken(token); 
+    setToken(token);
   };
   const logout = () => {
-    console.log('Logout'); 
+    console.log('Logout');
 
     localStorage.removeItem('token');
     setUser(null);
