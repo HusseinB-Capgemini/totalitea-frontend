@@ -19,28 +19,31 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const fetchProducts = async (searchQuery = '') => {
+  const fetchProducts = async (name = '', supplierName = '') => {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.get(
-        `http://localhost:8082/api/products${searchQuery ? `/search?name=${searchQuery}` : ''}`
-      );
+      let url = `http://localhost:8082/api/products/search`;
+      if (name) {
+        url += `?name=${name}`;
+      } else if (supplierName) {
+        url += `?supplierName=${supplierName}`;
+      }
+      const response = await axios.get(url);
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
       setError('Error fetching products');
-    } finally {
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  const handleSearch = (searchTerm) => {
-    fetchProducts(searchTerm);
+  const handleSearch = (name, supplierName) => {
+    fetchProducts(name, supplierName);
   };
 
   const addToCart = async (productId, productPrice) => {
