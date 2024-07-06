@@ -23,7 +23,7 @@ const ProductPage = () => {
     setLoading(true);
     setError('');
     try {
-      let url = `http://localhost:8080/api/products/search`;
+      let url = `http://localhost:8082/api/products/search`;
       if (name) {
         url += `?name=${name}`;
       } else if (supplierName) {
@@ -34,9 +34,8 @@ const ProductPage = () => {
     } catch (error) {
       console.error('Error fetching products:', error);
       setError('Error fetching products');
-    } finally {
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
